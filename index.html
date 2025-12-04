@@ -10,8 +10,26 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #f4f4f4;
       font-family: Arial, sans-serif;
+    }
+
+    /* Wallpaper Background */
+    body {
+      background-image: url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6');
+      background-size: cover;        /* Full screen */
+      background-position: center;   /* Center image */
+      background-repeat: no-repeat;  /* No repeat */
+      background-attachment: fixed;  /* Stable wallpaper */
+    }
+
+    /* Dark overlay for readability */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
     }
 
     /* Login Screen */
@@ -20,13 +38,15 @@
       justify-content: center;
       align-items: center;
       height: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .login-container {
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
       padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
       width: 300px;
       text-align: center;
     }
@@ -53,9 +73,9 @@
       background: #005fcc;
     }
 
-    /* Iframe Page */
+    /* Main Content */
     #mainContent {
-      display: none; /* Hidden until login */
+      display: none;
       height: 100%;
     }
 
@@ -66,10 +86,14 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+
+  <!-- Wallpaper Dark Overlay -->
+  <div id="overlay"></div>
 
   <!-- LOGIN SCREEN -->
   <div id="loginBox">
@@ -94,9 +118,11 @@
       let user = document.getElementById("username").value;
       let pass = document.getElementById("password").value;
 
-      if (user === "8778909983" && pass === "765026") {
+      if (user === "java" && pass === "admin") {
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
+        document.getElementById("overlay").style.display = "none"; 
+        document.body.style.background = "none"; 
       } else {
         document.getElementById("error").style.display = "block";
       }
@@ -105,4 +131,3 @@
 
 </body>
 </html>
-
