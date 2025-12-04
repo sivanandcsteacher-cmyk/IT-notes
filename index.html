@@ -10,7 +10,53 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Login Screen */
+    #loginBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .login-container {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-container input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background: #0078ff;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background: #005fcc;
+    }
+
+    /* Iframe Page */
+    #mainContent {
+      display: none; /* Hidden until login */
+      height: 100%;
     }
 
     iframe {
@@ -25,10 +71,37 @@
 </head>
 <body>
 
-  <iframe 
-    src="https://docs.google.com/document/d/16GBa0hQ1AsolbJnV7DvHfg08VVVdUBc0Gr-2Oxd5Eto/edit?usp=sharing">
-  </iframe>
+  <!-- LOGIN SCREEN -->
+  <div id="loginBox">
+    <div class="login-container">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Enter Username">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="validateLogin()">Login</button>
+      <p id="error" style="color:red; display:none;">Invalid username or password</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="mainContent">
+    <iframe 
+      src="https://docs.google.com/document/d/16GBa0hQ1AsolbJnV7DvHfg08VVVdUBc0Gr-2Oxd5Eto/edit?usp=sharing">
+    </iframe>
+  </div>
+
+  <script>
+    function validateLogin() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+
+      if (user === "java" && pass === "admin") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+  </script>
 
 </body>
 </html>
-
